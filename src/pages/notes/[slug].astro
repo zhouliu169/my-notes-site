@@ -2,29 +2,36 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  const posts = import.meta.glob("../../content/notes/*.md", { eager: true });
-
-  return Object.entries(posts).map(([path, post]) => {
-    const fileName = path.split("/").pop()?.replace(".md", "") || "";
+  const posts = Object.entries(
+    import.meta.glob("../../content/notes/*.md", { eager: true })
+  ).map(([path, module]) => {
+    const slug = path.split("/").pop()?.replace(".md", "") || "";
 
     return {
-      params: { slug: fileName },
-      props: { post },
+      params: { slug },
+      props: {
+        post: module,
+      },
     };
   });
+
+  return posts;
 }
 
 const { post } = Astro.props;
-const frontmatter = post.frontmatter;
-const Content = post.default;
+const { Content, frontmatter } = post;
 ---
 
 <BaseLayout title={frontmatter.title}>
-  <h1>{frontmatter.title}</h1>
-  <p><strong>日期：</strong>{frontmatter.date}</p>
-  <p><strong>简介：</strong>{frontmatter.description}</p>
+  <article>
+    <h1>{frontmatter.title}</h1>
 
-  <hr style="margin: 24px 0;" />
+    <p style="color: #666; font-size: 14px;">
+      {frontmatter.pubDate ?? frontmatter.date ?? ""}
+    </p>
 
-  <Content />
+    <div>
+      <Content />
+    </div>
+  </article>
 </BaseLayout>
