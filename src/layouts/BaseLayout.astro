@@ -8,7 +8,7 @@ const { title = "我的学习笔记" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <style>
+    <style is:global>
       body {
         margin: 0;
         font-family: Arial, sans-serif;
@@ -57,20 +57,20 @@ const { title = "我的学习笔记" } = Astro.props;
         margin-bottom: 10px;
       }
 
-      a,
-      a:visited,
-      a:hover,
-      a:active {
+      .card a,
+      .card a:visited,
+      .card a:hover,
+      .card a:active {
         color: #222;
       }
 
-      main a,
-      main a:visited {
+      .card a,
+      .card a:visited {
         text-decoration: none;
       }
 
-      main a:hover,
-      main a:active {
+      .card a:hover,
+      .card a:active {
         text-decoration: underline;
       }
 
