@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+const base = import.meta.env.BASE_URL;
+
 const posts = Object.entries(
   import.meta.glob("../../content/notes/*.md", { eager: true })
 ).map(([path, post]) => {
@@ -23,13 +25,16 @@ const posts = Object.entries(
         style="background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 18px;"
       >
         <h2 style="margin: 0 0 8px 0; font-size: 24px;">
-          <a href={`/notes/${post.slug}`} style="text-decoration: none; color: #222;">
+          <a
+            href={`${base}notes/${post.slug}/`}
+            style="text-decoration: none; color: #222;"
+          >
             {post.frontmatter.title}
           </a>
         </h2>
 
         <p style="margin: 0 0 8px 0; color: #666; font-size: 14px;">
-          {post.frontmatter.date}
+          {post.frontmatter.pubDate ?? post.frontmatter.date ?? ""}
         </p>
 
         <p style="margin: 0;">
