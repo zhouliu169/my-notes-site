@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = import.meta.glob("../../content/notes/*.md", { eager: true });
+
+  return Object.entries(posts).map(([path, post]) => {
+    const fileName = path.split("/").pop()?.replace(".md", "") || "";
+
+    return {
+      params: { slug: fileName },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const frontmatter = post.frontmatter;
+const Content = post.default;
+---
+
+<BaseLayout title={frontmatter.title}>
+  <h1>{frontmatter.title}</h1>
+  <p><strong>日期：</strong>{frontmatter.date}</p>
+  <p><strong>简介：</strong>{frontmatter.description}</p>
+
+  <hr style="margin: 24px 0;" />
+
+  <Content />
+</BaseLayout>

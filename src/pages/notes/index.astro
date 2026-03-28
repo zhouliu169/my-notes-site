@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = Object.entries(
+  import.meta.glob("../../content/notes/*.md", { eager: true })
+).map(([path, post]) => {
+  const fileName = path.split("/").pop()?.replace(".md", "") || "";
+
+  return {
+    slug: fileName,
+    frontmatter: post.frontmatter,
+  };
+});
+---
+
+<BaseLayout title="笔记列表">
+  <h1>笔记列表</h1>
+  <p>这里会陆续更新我的学习笔记。</p>
+
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    {posts.map((post) => (
+      <article
+        style="background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 18px;"
+      >
+        <h2 style="margin: 0 0 8px 0; font-size: 24px;">
+          <a href={`/notes/${post.slug}`} style="text-decoration: none; color: #222;">
+            {post.frontmatter.title}
+          </a>
+        </h2>
+
+        <p style="margin: 0 0 8px 0; color: #666; font-size: 14px;">
+          {post.frontmatter.date}
+        </p>
+
+        <p style="margin: 0;">
+          {post.frontmatter.description}
+        </p>
+      </article>
+    ))}
+  </div>
+</BaseLayout>

@@ -1,17 +1,19 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="我的学习笔记">
+  <h1>我的学习笔记</h1>
+  <p>这里用来记录我的学习过程、知识整理和踩坑总结。</p>
+
+  <h2>我会写什么</h2>
+  <ul>
+    <li>前端基础</li>
+    <li>JavaScript</li>
+    <li>Git 和 GitHub</li>
+    <li>开发问题记录</li>
+  </ul>
+
+  <h2>最近计划</h2>
+  <p>先搭一个最小可用的网站，然后持续添加学习笔记。</p>
+</BaseLayout>
