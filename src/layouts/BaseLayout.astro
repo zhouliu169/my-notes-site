@@ -1,5 +1,5 @@
 ---
-const base = import.meta.env.BASE_URL;
+const siteBase = "/my-notes-site/";
 const { title = "我的学习笔记" } = Astro.props;
 ---
 
@@ -77,9 +77,9 @@ const { title = "我的学习笔记" } = Astro.props;
   <body>
     <div class="container">
       <div class="nav">
-        <a href={base}>首页</a>
-        <a href={`${base}notes/`}>笔记</a>
-        <a href={`${base}about/`}>关于</a>
+        <a href={siteBase}>首页</a>
+        <a href={`${siteBase}notes/`}>笔记</a>
+        <a href={`${siteBase}about/`}>关于</a>
       </div>
 
       <main class="card">
