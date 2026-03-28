@@ -30,7 +30,7 @@ const { title = "我的学习笔记" } = Astro.props;
       .nav a {
         margin-right: 16px;
         text-decoration: none;
-        color: #333;
+        color: #222;
         font-weight: bold;
       }
 
@@ -57,12 +57,20 @@ const { title = "我的学习笔记" } = Astro.props;
         margin-bottom: 10px;
       }
 
-      main a {
+      a,
+      a:visited,
+      a:hover,
+      a:active {
         color: #222;
+      }
+
+      main a,
+      main a:visited {
         text-decoration: none;
       }
 
-      main a:hover {
+      main a:hover,
+      main a:active {
         text-decoration: underline;
       }
 
